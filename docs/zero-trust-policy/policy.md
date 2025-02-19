@@ -3,7 +3,7 @@ title: Example Policy
 parent: Zero Trust Policy
 nav_order: 1
 ---
-# Code
+# Example Policy
 {: .no_toc }
 
 ## Table of contents
