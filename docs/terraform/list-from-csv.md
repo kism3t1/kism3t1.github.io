@@ -4,17 +4,6 @@ parent: Terraform
 nav_order: 2
 ---
 
-# Creating a list from a csv
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
----
-
 ## Creating a Cloudflare list from a csv via a dynamic rule.
 
 ```
