@@ -1,14 +1,15 @@
 ---
 title: Home
 layout: home
+nav_order: 1
 ---
 
-Documenting the deployment, Terraform configuration of Cloudflare Zero Trust
+# My Journey to Zero Trust: Deploying Cloudflare with Terraform
 
 ----
 
-[^1]: [Cloudflare Dashboard][Cloudflare Dash].
+[^1]: [Cloudflare Dashboard].
 
 [blog]: https://kism3t1.github.io
-[Cloudflare Dash]: https://dash.cloudflare.com/
+[Cloudflare Dashboard]: https://dash.cloudflare.com/
 [Terraform]: https://app.terraform.io/
