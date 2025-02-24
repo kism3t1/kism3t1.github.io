@@ -3,7 +3,7 @@ title: Managing Lists
 parent: Cloudflare Zero Trust
 nav_order: 2
 ---
-
+# Managing Cloudflare Lists via CSV files
 ---
 
 CSV file would have both url and description headers
