@@ -1,6 +1,6 @@
 ---
 title: Cloudflare Zero Trust
-layout: minimal
+layout: default
 nav_order: 3
 ---
 
