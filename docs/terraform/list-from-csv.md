@@ -4,27 +4,39 @@ parent: Terraform
 nav_order: 2
 ---
 
-## Creating a Cloudflare list from a csv via a dynamic rule.
+## Creating a Cloudflare list from a csv.
+
+CSV file would have both url and description headers
+
+url,description
+https://example.com,This is the main example website
+https://api.example.com,API endpoint for example.com
+https://www.example.com/admin,Admin interface
 
 ```
+# --- Read the CSV file and decode ---
+data "local_file" "http_allow_csv" {
+  filename = "csvs/http_allow.csv"
+}
+
 locals {
-	# Load the rule CSV's
-    ssl_inspection_list                 = csvdecode(file("csvs/bypass_ssl_inspection.csv"))
-	# Iterate over the CSV's and save to a list
-	ssl_inspection_list_rule_map = { for c in local.ssl_inspection_list : c.url => c }
+  http_allow_list = csvdecode(data.local_file.http_allow_csv.content)
 }
 
-resource "cloudflare_zero_trust_list" "Bypass_SSL_Inspection" {
+# --- Create the Cloudflare Zero Trust List Resources ---
+resource "cloudflare_zero_trust_list" "http_allow" {
   account_id  = var.account_id
-  name        = "Bypass_SSL_Inspection"
-  type        = "HOSTNAMES"
-  description = "Bypass list for URL SSL Inspection."
-  dynamic "rule" {
-		for_each = local.ssl_inspection_list_rule_map
-		content{
-        items               = rule.value.url
-		description         = rule.value.description
-		}
-	}
+  name        = "HTTP Allow List"
+  description = "HTTP Allow List from csv http_allow"
+  type        = "URL"
+  items       = [
+    for item in local.http_allow_list : { value = item.url, description = item.description }
+  ]
 }
 ```
+
+This would create the Cloudflare Zero Trust List
+
+https://example.com,This is the main example website
+https://api.example.com,API endpoint for example.com
+https://www.example.com/admin,Admin interface
