@@ -7,11 +7,12 @@ nav_order: 2
 ---
 
 CSV file would have both url and description headers
-
+```
 url,description
 https://example.com,This is the main example website
 https://api.example.com,API endpoint for example.com
 https://www.example.com/admin,Admin interface
+```
 
 ```
 # --- Read the CSV file and decode ---
